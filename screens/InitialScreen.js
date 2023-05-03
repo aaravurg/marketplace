@@ -22,19 +22,31 @@ const InitialScreen = () => {
                     href={require('./sign_in.svg')}
                 />
             </Svg> */}
-            
+
             {/* Stock image */}
             <Image
                 source={require('/Users/siddharthmani/Documents/GitHub/marketplace/images/sign_in.png')}
                 style={styles.image}
             />
-            {/* Login Button */}
+            
+            {/* Login button */}
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     onPress={() => navigation.navigate("Login")}
                     style={styles.button}
                 >
                     <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+            </View>
+
+            {/* Sign up option */}
+            <View style={styles.linkContainer}>
+                <Text style={styles.link}>Don't have an account? </Text>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("SignUp")}
+                    style={styles.link}
+                >
+                    <Text style={styles.linkText}>Sign up</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -88,5 +100,24 @@ const styles = StyleSheet.create({
         fontFamily: 'Manrope',
         fontSize: 22,
         fontWeight: '600'
+    },
+    linkContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 55,
+        position: 'absolute',
+        top: '80%'
+    },
+    link: {
+        color: '#FFFFFF',
+        fontFamily: 'Manrope',
+        fontSize: 14,
+        fontWeight: '400'
+    },
+    linkText: {
+        color: '#7871FF',
+        fontFamily: 'Manrope',
+        fontWeight: '600',
+        marginTop: 10
     }
 })
