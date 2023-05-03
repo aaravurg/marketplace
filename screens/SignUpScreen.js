@@ -1,14 +1,21 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-const SignupScreen = () => {
+const SignUpScreen = () => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text>Sign Up Screen</Text>
         </View>
     )
 }
 
-export default SignupScreen
+export default SignUpScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#333333',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+})
