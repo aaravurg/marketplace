@@ -1,9 +1,6 @@
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import Svg, { Image as SvgImage } from 'react-native-svg'; // Allows us to use .svg images
-import { ReactSVG } from 'react-svg'
-
 
 const InitialScreen = () => {
     const navigation = useNavigation();
@@ -15,17 +12,9 @@ const InitialScreen = () => {
                 Aggie Marketplace
             </Text>
 
-            {/* <Svg width='200' height='200' style={styles.image}>
-                <SvgImage
-                    width="100%"
-                    height="100%"
-                    href={require('./sign_in.svg')}
-                />
-            </Svg> */}
-
             {/* Stock image */}
             <Image
-                source={require('/Users/siddharthmani/Documents/GitHub/marketplace/images/sign_in.png')}
+                source={require('/Users/siddharthmani/Documents/GitHub/marketplace/assets/sign_in.png')}
                 style={styles.image}
             />
             
