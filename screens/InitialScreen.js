@@ -14,7 +14,7 @@ const InitialScreen = () => {
 
             {/* Stock image */}
             <Image
-                source={require('/Users/siddharthmani/Documents/GitHub/marketplace/assets/sign_in.png')}
+                source={require('/Users/siddharthmani/Documents/GitHub/marketplace/assets/intro.png')}
                 style={styles.image}
             />
             
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#FFFFFF',
-        fontFamily: 'Manrope',
+        // fontFamily: 'Manrope',
         fontSize: 22,
         fontWeight: '600'
     },
@@ -99,13 +99,13 @@ const styles = StyleSheet.create({
     },
     link: {
         color: '#FFFFFF',
-        fontFamily: 'Manrope',
+        // fontFamily: 'Manrope',
         fontSize: 14,
         fontWeight: '400'
     },
     linkText: {
         color: '#7871FF',
-        fontFamily: 'Manrope',
+        // fontFamily: 'Manrope',
         fontWeight: '600',
         marginTop: 10
     }
