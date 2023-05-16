@@ -9,15 +9,15 @@ const LoginScreen = () => {
     
     const navigation = useNavigation()
 
-    useEffect(() => { // This is a listener, which essentially handles what to do when we actually login / register
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            // If we have a user (i.e. the user exists), navigate to the home screen
-            if (user) {
-                navigation.replace("Home")
-            }
-            return unsubscribe // Returns unsubscribe so that the listener doesn't keep pinging the program after we change state
-        })
-    }, [])
+    // useEffect(() => { // This is a listener, which essentially handles what to do when we actually login / register
+    //     const unsubscribe = auth.onAuthStateChanged(user => {
+    //         // If we have a user (i.e. the user exists), navigate to the home screen
+    //         if (user) {
+    //             navigation.replace("Home")
+    //         }
+    //         return unsubscribe // Returns unsubscribe so that the listener doesn't keep pinging the program after we change state
+    //     })
+    // }, [])
 
     const handleLogin = () => {
         auth 
@@ -25,6 +25,7 @@ const LoginScreen = () => {
             .then(userCredentials => {
                 const user = userCredentials.user;
                 console.log("Logged in with", user.email);
+                navigation.replace("Home")
             })
             .catch(error => alert(error.message))
     }
