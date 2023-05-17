@@ -20,7 +20,6 @@ const SignUpScreen = () => {
             .then(userCredentials => { // .then() excecutes after the Promise
                 const user = userCredentials.user;
                 console.log(user.email);
-                navigation.replace("Home");
                 updateProfile(user, {
                     displayName: firstName + ' ' + lastName
                 })
@@ -28,6 +27,7 @@ const SignUpScreen = () => {
                     console.log("User name: " + user.displayName)
                 })
                 .catch(error => alert(error.message))
+                navigation.replace("Home");
             })
             .catch(error => alert(error.message))
     }
