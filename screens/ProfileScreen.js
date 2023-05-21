@@ -10,8 +10,8 @@ export default function App() {
                     <Ionicons name="md-more" size={24} color="52575D"></Ionicons>
                 </View>
                 <View style={{alignSelf: "center"}}>
-                    <View style={style.profileImage}>
-                        <Image source={require("IMG_3934.jpeg")} style={styles.image} resizeMode="center"></Image>
+                    <View style={styles.profileImage}>
+                        <Image source={require("/Users/siddharthmani/Documents/GitHub/marketplace/assets/icon.png")} style={styles.image} resizeMode="center"></Image>
                     </View>
                 <View style={styles.dm}>
                     <MaterialIcons name="chat" size={18} color ="DFD8C8" ></MaterialIcons>
@@ -45,13 +45,13 @@ export default function App() {
                 <View style={{ marginTop: 32 }}>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("./assets/media1.jpg")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("/Users/siddharthmani/Documents/GitHub/marketplace/assets/favicon.png")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("./assets/media2.jpg")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("/Users/siddharthmani/Documents/GitHub/marketplace/assets/favicon.png")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("./assets/media3.jpg")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("/Users/siddharthmani/Documents/GitHub/marketplace/assets/favicon.png")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                     </ScrollView>
                     <View style={styles.mediaCount}>
