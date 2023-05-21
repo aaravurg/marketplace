@@ -6,6 +6,8 @@ import InitialScreen from './screens/InitialScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
+import Product from './screens/ProductPage'
+import ProductPage from './screens/ProductPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +49,13 @@ export default function App() {
             headerTitleStyle: {
               color: 'white'
             }
+          }}
+          />
+        <Stack.Screen 
+          name="Product" 
+          component={ProductPage} 
+          options={{
+            headerShown: false
           }}
           />
       </Stack.Navigator>
