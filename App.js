@@ -6,6 +6,7 @@ import InitialScreen from './screens/InitialScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,18 @@ export default function App() {
           options={{
             title: 'Home',
             headerBackTitle: "Back to login",
+            headerShadowVisible: false,
+            headerTitleStyle: {
+              color: 'white'
+            }
+          }}
+          />
+        <Stack.Screen 
+          name="Profile" 
+          component={ProfileScreen} 
+          options={{
+            title: 'Profile',
+            headerBackTitle: "Back to home",
             headerShadowVisible: false,
             headerTitleStyle: {
               color: 'white'

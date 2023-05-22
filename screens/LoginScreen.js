@@ -25,7 +25,7 @@ const LoginScreen = () => {
             .then(userCredentials => {
                 const user = userCredentials.user;
                 console.log("Logged in with", user.email);
-                navigation.replace("Home")
+                navigation.replace("Profile")
             })
             .catch(error => alert(error.message))
     }
