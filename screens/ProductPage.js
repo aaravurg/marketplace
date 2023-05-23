@@ -4,6 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 
 const ProductPage = () => {
     const [prodServName, setprodServName] = useState('')
+    const [description, setDescription] = useState('')
     const [selectedOption, setSelectedOption] = useState('')
 
     const handleOptionChange = (option) => {
@@ -54,6 +55,18 @@ const ProductPage = () => {
             <Text style={[styles.text1, styles.text3]}>
                 Description
             </Text>
+
+            <View style={styles.inputContainer2}>
+                {/* Text container for description */}
+                <TextInput
+                    placeholder = 'Enter description'
+                    placeholderTextColor = '#999999'
+                    value = {description}
+                    onChangeText = {(text) => setDescription(text)}
+                    style = {styles.input}
+                />
+            </View>
+
         </View>
     )
 }
@@ -100,13 +113,19 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: '25%',
     },
+    inputContainer2: {
+        width: '80%',
+        position: 'absolute',
+        top: '58%',
+    },
     input: {
         backgroundColor: '#717171', // Bg color of input fields
         paddingHorizontal: 15, // Horizontal padding
         paddingVertical: 10, // Vertical padding
         borderRadius: 10, // Rounds edges of text fields
         marginTop: 20, // Ensures that the input field and buttonContainer are separated
-        opacity: 0.5
+        opacity: 0.5,
+        color: 'white'
     },
     picker: {
         width: 300,
