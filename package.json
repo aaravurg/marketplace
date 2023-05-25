@@ -16,7 +16,12 @@
     "react": "18.2.0",
     "react-native": "0.71.7",
     "react-native-svg": "13.4.0",
+<<<<<<< HEAD
     "react-svg": "^16.1.10"
+=======
+    "react-svg": "^16.1.10",
+    "uid": "^2.0.2"
+>>>>>>> 7e044d8f0c95e200586979dc6a6071b942597669
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

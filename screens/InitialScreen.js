@@ -54,7 +54,11 @@ const styles = StyleSheet.create({
     title: {
         flex: 1,
         color: '#FFFFFF',
+<<<<<<< HEAD
         fontFamily: 'Manrope',
+=======
+        // fontFamily: 'Manrope',
+>>>>>>> 7e044d8f0c95e200586979dc6a6071b942597669
         fontSize: 36,
         fontWeight: '400',
         alignItems: 'center',
