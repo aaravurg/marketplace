@@ -14,7 +14,7 @@ const InitialScreen = () => {
 
             {/* Stock image */}
             <Image
-                source={require('/Users/siddharthmani/Documents/GitHub/marketplace/assets/intro.png')}
+                source={require('')}
                 style={styles.image}
             />
             

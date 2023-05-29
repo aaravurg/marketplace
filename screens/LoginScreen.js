@@ -36,7 +36,7 @@ const LoginScreen = () => {
                 Welcome Back!
             </Text>
             <Image
-                source={require('/Users/siddharthmani/Documents/GitHub/marketplace/assets/log_in.png')}
+                source={require('')}
                 style={styles.image}
             />
             <View style={styles.inputContainer}>

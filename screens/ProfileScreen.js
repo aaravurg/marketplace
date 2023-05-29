@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView } from "react-native";
 import { Ionicons, MaterialIcons} from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/core'
 export default function App() {
     return (
         < SafeAreaView style={styles.container}>
@@ -11,7 +12,7 @@ export default function App() {
                 </View>
                 <View style={{alignSelf: "center"}}>
                     <View style={styles.profileImage}>
-                        <Image source={require("/Users/siddharthmani/Documents/GitHub/marketplace/assets/icon.png")} style={styles.image} resizeMode="center"></Image>
+                        <Image source={require("IMG_5067")} style={styles.image} resizeMode="center"></Image>
                     </View>
                 <View style={styles.dm}>
                     <MaterialIcons name="chat" size={18} color ="DFD8C8" ></MaterialIcons>
@@ -23,8 +24,8 @@ export default function App() {
                 </View>
 
                 <View style={styles.infoContainer}>
-                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Julie</Text>
-                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Photographer</Text>
+                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Anonymous</Text>
+                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Student</Text>
                 </View>
 
                 <View style={styles.statsContainer}>
@@ -45,13 +46,13 @@ export default function App() {
                 <View style={{ marginTop: 32 }}>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("/Users/siddharthmani/Documents/GitHub/marketplace/assets/favicon.png")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("/Users/siddharthmani/Documents/GitHub/marketplace/assets/favicon.png")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                         <View style={styles.mediaImageContainer}>
-                            <Image source={require("/Users/siddharthmani/Documents/GitHub/marketplace/assets/favicon.png")} style={styles.image} resizeMode="cover"></Image>
+                            <Image source={require("")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                     </ScrollView>
                     <View style={styles.mediaCount}>
