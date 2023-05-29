@@ -29,16 +29,16 @@ export default function App() {
 
                 <View style={styles.statsContainer}>
                     <View style={styles.statsBox}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
-                        <Text style={[styles.text, styles.subText]}>Posts</Text>
+                        <Text style={[styles.text, { fontSize: 24 }]}>200</Text>
+                        <Text style={[styles.text, styles.subText]}>Products Sold</Text>
                     </View>
                     <View style={[styles.statsBox, { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 }]}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>45,844</Text>
-                        <Text style={[styles.text, styles.subText]}>Followers</Text>
+                        <Text style={[styles.text, { fontSize: 24 }]}>53</Text>
+                        <Text style={[styles.text, styles.subText]}>Products Bought</Text>
                     </View>
                     <View style={styles.statsBox}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>302</Text>
-                        <Text style={[styles.text, styles.subText]}>Following</Text>
+                        <Text style={[styles.text, { fontSize: 24 }]}>3</Text>
+                        <Text style={[styles.text, styles.subText]}>Pending</Text>
                     </View>
                 </View>
 
@@ -66,7 +66,7 @@ export default function App() {
                         <View style={styles.activityIndicator}></View>
                         <View style={{ width: 250 }}>
                             <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                                Started following <Text style={{ fontWeight: "400" }}>Jake Challeahe</Text> and <Text style={{ fontWeight: "400" }}>Luis Poteer</Text>
+                                Made a recent purchase of <Text style={{ fontWeight: "400" }}>BLACK FLANNEL</Text> from <Text style={{ fontWeight: "400" }}>GDSC PERSON</Text>
                             </Text>
                         </View>
                     </View>
@@ -75,7 +75,7 @@ export default function App() {
                         <View style={styles.activityIndicator}></View>
                         <View style={{ width: 250 }}>
                             <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                                Started following <Text style={{ fontWeight: "400" }}>Luke Harper</Text>
+                            Created a article clothing post of <Text style={{ fontWeight: "400" }}>UC Davis Hoodie</Text> for <Text style={{ fontWeight: "400" }}>$30</Text>
                             </Text>
                         </View>
                     </View>
@@ -91,7 +91,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#FFF"
+        backgroundColor: "#333333"
     },
     text: {
         fontFamily: "HelveticaNeue",

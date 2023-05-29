@@ -29,12 +29,12 @@ export default function App() {
 
                 <View style={styles.statsContainer}>
                     <View style={styles.statsBox}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
-                        <Text style={[styles.text, styles.subText]}>Posts</Text>
+                        <Text style={[styles.text, { fontSize: 24 }]}>25</Text>
+                        <Text style={[styles.text, styles.subText]}>Products Purchsed</Text>
                     </View>
                     <View style={[styles.statsBox, { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 }]}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>45,844</Text>
-                        <Text style={[styles.text, styles.subText]}>Followers</Text>
+                        <Text style={[styles.text, { fontSize: 24 }]}>124</Text>
+                        <Text style={[styles.text, styles.subText]}>Products Sold</Text>
                     </View>
                     <View style={styles.statsBox}>
                         <Text style={[styles.text, { fontSize: 24 }]}>302</Text>
