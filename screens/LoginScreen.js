@@ -25,7 +25,7 @@ const LoginScreen = () => {
             .then(userCredentials => {
                 const user = userCredentials.user;
                 console.log("Logged in with", user.email);
-                navigation.replace("Home")
+                navigation.replace("Product") // For development only! Change back to 'Home' when complete
             })
             .catch(error => alert(error.message))
     }
@@ -36,7 +36,7 @@ const LoginScreen = () => {
                 Welcome Back!
             </Text>
             <Image
-                source={require('/Users/siddharthmani/Documents/GitHub/marketplace/assets/log_in.png')}
+                source={require('/Users/aarav/Documents/marketplace/assets/log_in.png')}
                 style={styles.image}
             />
             <View style={styles.inputContainer}>
