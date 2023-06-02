@@ -1,57 +1,78 @@
-
-
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, FlatList, Image, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/core'
+import { auth } from '../firebase';
+import { firebase } from '../firebase';
+import { useEffect } from 'react';
+import 'firebase/compat/firestore';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ProfilePage from './ProfilePage';
+import InitialScreen from './InitialScreen';
 
 const windowWidth = Dimensions.get('window').width;
 
 const HomePage = () => {
-  const [products, setProducts] = useState([
+  const [listings, setListings] = useState([]); 
+  const [selectedOption, setSelectedOption] = useState("")
+  const [button1Color, setButton1Color] = useState('#FFFFFF');
+  const [button2Color, setButton2Color] = useState('#FFFFFF');
+  const navigation = useNavigation()
+
+  const advanceToProduct = () => {
+    navigation.replace("Product"); 
+  }
+
+  const handleSelection = (option) => { 
+        
+    if(option == "Product")
     {
-      id: 1,
-      title: 'Product 1',
-      description: 'Description 1',
-      image: require('Ag.png'),
-    },
+        setButton1Color('#7871FF');
+        setButton2Color('#FFFFFF'); 
+    }
+    else
     {
-      id: 2,
-      title: 'Product 2',
-      description: 'Description 2',
-      image: require('Ag.png'),
-    },
-    {
-      id: 3,
-      title: 'Product 3',
-      description: 'Description 3',
-      image: require('Ag.png'),
-    },
-    {
-      id: 4,
-      title: 'Product 4',
-      description: 'Description 4',
-      image: require('Ag.png'),
-    },
-    {
-      id: 5,
-      title: 'Product 5',
-      description: 'Description 5',
-      image: require('Ag.png'),
-    },
-    {
-      id: 6,
-      title: 'Product 6',
-      description: 'Description 6',
-      image: require('Ag.png'),
-    },
-    // Add more products as needed
-  ]);
+        setButton1Color('#FFFFFF');
+        setButton2Color('#7871FF');
+    }
+    setSelectedOption(option);
+    console.log(option);
+  }
+
+  const fetchListings = async () => {
+    try {
+      const user = auth.currentUser;
+      const uid = user.uid; 
+      const db = firebase.firestore(); 
+      const userCollection = db.collection('users').doc(uid).collection('listings');
+      const querySnapshot = await userCollection.get();
+
+      const fetchedListings = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const cost = data.cost; 
+        const details = data.details; 
+        const photo = data.photo
+        const title = data.title; // Access the 'title' field
+        fetchedListings.push({ title: title, cost: cost, details: details, photo: photo});
+      });
+
+      setListings(fetchedListings);
+    } catch (error) {
+      console.log('Error fetching listings: ', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchListings();
+  }, []);
 
   const renderProductItem = ({ item }) => {
     return (
       <View style={styles.productItem}>
-        <Image source={item.image} style={styles.productImage} resizeMode="contain" />
+        <Image source={item.photo} style={styles.productImage} resizeMode="contain" />
         <Text style={styles.productTitle}>{item.title}</Text>
-        <Text style={styles.productDescription}>{item.description}</Text>
+        <Text style={styles.productTitle}>${item.cost}</Text>
+        <Text style={styles.productDescription}>{item.details}</Text>
       </View>
     );
   };
@@ -78,7 +99,7 @@ const HomePage = () => {
     return formattedData;
   };
 
-  const formattedProducts = formatProductData(products, 2);
+  const formattedProducts = formatProductData(listings, 2);
 
   return (
     <View style={styles.container}>
@@ -86,10 +107,10 @@ const HomePage = () => {
         <Text style={styles.headerTitle}>Aggie Marketplace</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={[styles.button, {backgroundColor: button1Color}]} onPress={() => handleSelection("Product")}>
           <Text style={styles.buttonText}>Products</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={[styles.button, {backgroundColor: button2Color}]}  onPress={() => handleSelection("Service")}>
           <Text style={styles.buttonText}>Services</Text>
         </TouchableOpacity>
       </View>
@@ -99,17 +120,15 @@ const HomePage = () => {
         keyExtractor={(item, index) => `row-${index}`}
         contentContainerStyle={styles.productList}
       />
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity 
+      onPress={advanceToProduct}
+      style={styles.addButton}>
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
-      <View style={styles.bottomButtonsContainer}>
-        <TouchableOpacity style={styles.bottomButton}>
-          <Text style={styles.bottomButtonText}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.bottomButton}>
-          <Text style={styles.bottomButtonText}>Profile</Text>
-        </TouchableOpacity>
-      </View>
+      
+      
+      
+      
     </View>
   );
 };
@@ -117,7 +136,11 @@ const HomePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50,
+    backgroundColor: '#333333',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 40,
+    padding: 20
   },
   header: {
     alignItems: 'center',
@@ -126,23 +149,24 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 33,
     fontWeight: 'bold',
+    color: 'white'
   },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: 50,
   },
   button: {
     paddingVertical: 14,
     paddingHorizontal: 26,
-    backgroundColor: 'black',
     borderRadius: 100,
-    marginHorizontal: 8,
+    marginHorizontal: 10,
+    top: '20%'
   },
   buttonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
+    color: '#000000',
+    fontSize: 22,
+    fontWeight: '600'
   },
   productList: {
     paddingBottom: 16,
@@ -159,8 +183,9 @@ const styles = StyleSheet.create({
   productItem: {
     marginBottom: 5,
     padding: 8,
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
     borderRadius: 8,
+    height: 300
   },
   productImage: {
     width: '100%',
@@ -176,10 +201,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   addButton: {
+    backgroundColor: '#7871FF',
     position: 'absolute',
     bottom: 80,
     right: 16,
-    backgroundColor: 'lightblue',
     borderRadius: 50,
     width: 50,
     height: 50,

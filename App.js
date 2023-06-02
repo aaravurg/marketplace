@@ -8,11 +8,16 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import Product from './screens/ProductPage'
 import ProductPage from './screens/ProductPage';
+import ProfilePage from './screens/ProfilePage';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator(); 
 
 export default function App() {
   return (
+
+
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
         headerStyle: {
@@ -42,11 +47,7 @@ export default function App() {
           component={HomeScreen} 
           options={{
             title: 'Home',
-            headerBackTitle: "Back to login",
-            headerShadowVisible: false,
-            headerTitleStyle: {
-              color: 'white'
-            }
+            headerShown: false
           }}
           />
         <Stack.Screen 
@@ -56,8 +57,16 @@ export default function App() {
             headerShown: false
           }}
           />
+          <Stack.Screen 
+          name="Profile" 
+          component={ProfilePage} 
+          options={{
+            headerShown: false
+          }}
+          />
       </Stack.Navigator>
     </NavigationContainer>
+    
   );
 }
 
