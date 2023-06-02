@@ -12,7 +12,7 @@ export default function App() {
                 </View>
                 <View style={{alignSelf: "center"}}>
                     <View style={styles.profileImage}>
-                        <Image source={require("IMG_5067")} style={styles.image} resizeMode="center"></Image>
+                        <Image source={require("")} style={styles.image} resizeMode="center"></Image>
                     </View>
                 <View style={styles.dm}>
                     <MaterialIcons name="chat" size={18} color ="DFD8C8" ></MaterialIcons>
@@ -55,10 +55,6 @@ export default function App() {
                             <Image source={require("")} style={styles.image} resizeMode="cover"></Image>
                         </View>
                     </ScrollView>
-                    <View style={styles.mediaCount}>
-                        <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>70</Text>
-                        <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Media</Text>
-                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
