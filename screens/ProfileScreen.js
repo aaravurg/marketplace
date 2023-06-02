@@ -25,7 +25,7 @@ export default function App() {
 
                 <View style={styles.infoContainer}>
                     <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Anonymous</Text>
-                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Student</Text>
+                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Student at UC Davis</Text>
                 </View>
 
                 <View style={styles.statsContainer}>
@@ -60,28 +60,6 @@ export default function App() {
                         <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Media</Text>
                     </View>
                 </View>
-
-                <Text style={[styles.subText, styles.recent]}>Recent Activity</Text>
-                <View style={{ alignItems: "center" }}>
-                    <View style={styles.recentItem}>
-                        <View style={styles.activityIndicator}></View>
-                        <View style={{ width: 250 }}>
-                            <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                                Made a recent purchase of <Text style={{ fontWeight: "400" }}>BLACK FLANNEL</Text> from <Text style={{ fontWeight: "400" }}>GDSC PERSON</Text>
-                            </Text>
-                        </View>
-                    </View>
-
-                    <View style={styles.recentItem}>
-                        <View style={styles.activityIndicator}></View>
-                        <View style={{ width: 250 }}>
-                            <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                            Created a article clothing post of <Text style={{ fontWeight: "400" }}>UC Davis Hoodie</Text> for <Text style={{ fontWeight: "400" }}>$30</Text>
-                            </Text>
-                        </View>
-                    </View>
-                </View>
-
             </ScrollView>
         </SafeAreaView>
 
