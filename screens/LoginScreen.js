@@ -36,7 +36,7 @@ const LoginScreen = () => {
                 Welcome Back!
             </Text>
             <Image
-                source={require('')}
+                source={require("/Users/adamwong/Desktop/profile-edit/profile-edit/assets/adaptive-icon.png")}
                 style={styles.image}
             />
             <View style={styles.inputContainer}>

@@ -14,7 +14,7 @@ const InitialScreen = () => {
 
             {/* Stock image */}
             <Image
-                source={require('')}
+                source={require("/Users/adamwong/Desktop/profile-edit/profile-edit/assets/adaptive-icon.png")}
                 style={styles.image}
             />
             
