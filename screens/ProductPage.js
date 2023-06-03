@@ -17,7 +17,7 @@ const ProductPage = () => {
     const [price, setPrice] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
     const [displayButton, setDisplayButton] = useState(true); 
-
+    const [phoneNumber, setPhoneNumber] = useState('');
     const navigation = useNavigation();
 
     const openImagePicker = async () => {
@@ -70,10 +70,12 @@ const ProductPage = () => {
             cost: price,
             details: description,
             type: selectedOption,
-            photo: selectedImage
+            photo: selectedImage,
+            number: phoneNumber,
+            email: user.email
         };
 
-        const userCollection = db.collection('users').doc(uid).collection('listings');
+        const userCollection = db.collection('listings');
 
 
         userCollection.add(data)
@@ -151,6 +153,14 @@ const ProductPage = () => {
                     value = {description}
                     onChangeText = {(text) => setDescription(text)}
                     style = {styles.input_long}
+                />
+
+                <TextInput
+                    placeholder = 'Enter Phone Number'
+                    placeholderTextColor = '#FFFFFF'
+                    value = {phoneNumber}
+                    onChangeText = {(text) => setPhoneNumber(text)}
+                    style = {styles.input_standard}
                 />
             </View>
 
@@ -239,7 +249,7 @@ const styles = StyleSheet.create({
     input_long : {
         backgroundColor: '#717171', // Bg color of input fields
         paddingHorizontal: 15, // Horizontal padding
-        height: 100,
+        height: 50,
         paddingVertical: 10, // Vertical padding
         borderRadius: 10, // Rounds edges of text fields
         marginTop: 20, // Ensures that the input field and buttonContainer are separated

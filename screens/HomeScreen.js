@@ -8,6 +8,8 @@ import 'firebase/compat/firestore';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfilePage from './ProfilePage';
 import InitialScreen from './InitialScreen';
+import axios from 'axios';
+
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -16,18 +18,47 @@ const HomePage = () => {
   const [selectedOption, setSelectedOption] = useState("")
   const [button1Color, setButton1Color] = useState('#FFFFFF');
   const [button2Color, setButton2Color] = useState('#FFFFFF');
+  const serviceListings = []; 
+  const productListings = []; 
   const navigation = useNavigation()
 
   const advanceToProduct = () => {
     navigation.replace("Product"); 
   }
+/*
+  const sendTwilioMessage = async (sellerPhoneNumber, message) => {
+    try {
+      const accountSid = 'ACba8ce7552ad0de81210f8c6c4aa0bcf7'; // Replace with your Twilio Account SID
+      const authToken = '1bfac7bde743268d0f29b4ea820bb65d'; // Replace with your Twilio Auth Token
+      const twilioPhoneNumber = '+18555063074'; // Replace with your Twilio phone number
+      const client = require('twilio')(accountSid, authToken);
+
+      client.messages
+        .create({
+          body: message,
+          from: twilioPhoneNumber,
+          to: sellerPhoneNumber
+        })
+        .then(message => console.log(message.sid));
+  
+    } catch (error) {
+      console.log('Error sending message:', error);
+      
+    }
+    
+  };
+*/
+  const usa = auth.currentUser; 
+  const name = usa.displayName;
+  const first_initial = name.charAt(0); 
+
 
   const handleSelection = (option) => { 
         
     if(option == "Product")
     {
         setButton1Color('#7871FF');
-        setButton2Color('#FFFFFF'); 
+        setButton2Color('#FFFFFF');
     }
     else
     {
@@ -35,7 +66,13 @@ const HomePage = () => {
         setButton2Color('#7871FF');
     }
     setSelectedOption(option);
+    
+
     console.log(option);
+  }
+
+  const moveToProfile = async () => {
+    navigation.replace("Profile"); 
   }
 
   const fetchListings = async () => {
@@ -43,7 +80,7 @@ const HomePage = () => {
       const user = auth.currentUser;
       const uid = user.uid; 
       const db = firebase.firestore(); 
-      const userCollection = db.collection('users').doc(uid).collection('listings');
+      const userCollection = db.collection('listings');
       const querySnapshot = await userCollection.get();
 
       const fetchedListings = [];
@@ -51,9 +88,12 @@ const HomePage = () => {
         const data = doc.data();
         const cost = data.cost; 
         const details = data.details; 
-        const photo = data.photo
-        const title = data.title; // Access the 'title' field
-        fetchedListings.push({ title: title, cost: cost, details: details, photo: photo});
+        const photo = data.photo;
+        const title = data.title; 
+        const number = data.number;
+        const email = data.email;
+        const type = data.type
+        fetchedListings.push({ title: title, cost: cost, details: details, photo: photo, number: number, email: email, type: type});
       });
 
       setListings(fetchedListings);
@@ -68,41 +108,27 @@ const HomePage = () => {
 
   const renderProductItem = ({ item }) => {
     return (
-      <View style={styles.productItem}>
-        <Image source={item.photo} style={styles.productImage} resizeMode="contain" />
-        <Text style={styles.productTitle}>{item.title}</Text>
-        <Text style={styles.productTitle}>${item.cost}</Text>
-        <Text style={styles.productDescription}>{item.details}</Text>
-      </View>
-    );
-  };
-
-  const renderProductRow = ({ item }) => {
-    return (
-      <View style={styles.productRow}>
-        {item.map((product) => (
-          <View key={product.id} style={styles.productColumn}>
-            {renderProductItem({ item: product })}
+          
+          <View style={styles.productItem} >
+            <Image source={item.photo} style={styles.productImage} resizeMode="contain" />
+            <Text style={styles.productTitle}>{item.title}</Text>
+            <Text style={styles.productTitle}>${item.cost}</Text>
+            <Text style={styles.productDescription}>{item.details}</Text>
+            <Text style={styles.productTitle}>By: {item.email}</Text>
+            <Text style={styles.productTitle}># {item.number}</Text>
           </View>
-        ))}
-      </View>
+          
+          
     );
   };
-
-  const formatProductData = (data, numColumns) => {
-    const numOfRows = Math.ceil(data.length / numColumns);
-    const formattedData = Array.from({ length: numOfRows }, (_, rowIndex) => {
-      const start = rowIndex * numColumns;
-      const end = start + numColumns;
-      return data.slice(start, end);
-    });
-    return formattedData;
-  };
-
-  const formattedProducts = formatProductData(listings, 2);
 
   return (
     <View style={styles.container}>
+        <TouchableOpacity 
+        onPress={moveToProfile}
+        style={ styles.profileButton }>
+          <Text style={styles.addButtonText}>{first_initial}</Text>
+        </TouchableOpacity>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Aggie Marketplace</Text>
       </View>
@@ -114,10 +140,9 @@ const HomePage = () => {
           <Text style={styles.buttonText}>Services</Text>
         </TouchableOpacity>
       </View>
-      <FlatList
-        data={formattedProducts}
-        renderItem={renderProductRow}
-        keyExtractor={(item, index) => `row-${index}`}
+      <FlatList style={styles.flat}
+        data={listings}
+        renderItem={renderProductItem}
         contentContainerStyle={styles.productList}
       />
       <TouchableOpacity 
@@ -125,10 +150,6 @@ const HomePage = () => {
       style={styles.addButton}>
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
-      
-      
-      
-      
     </View>
   );
 };
@@ -142,9 +163,16 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     padding: 20
   },
+  top: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    padding: 10,
+    top: '3%'
+  },
   header: {
     alignItems: 'center',
     marginBottom: 15,
+    top: '5%'
   },
   headerTitle: {
     fontSize: 33,
@@ -155,6 +183,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: 50,
+    top: '7%'
+  },
+  flat: {
+    marginTop: 40
   },
   button: {
     paddingVertical: 14,
@@ -181,14 +213,14 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   productItem: {
-    marginBottom: 5,
+    marginBottom: 10,
     padding: 8,
-    backgroundColor: 'white',
+    backgroundColor: '#c8cbcf',
     borderRadius: 8,
-    height: 300
+    height: 350,
+    width: 300
   },
   productImage: {
-    width: '100%',
     height: windowWidth / 2 - 16,
     marginBottom: 8,
   },
@@ -199,6 +231,19 @@ const styles = StyleSheet.create({
   },
   productDescription: {
     fontSize: 14,
+    marginBottom: 4,
+  },
+  profileButton: {
+    backgroundColor: '#7871FF',
+    position: 'absolute',
+    bottom: 80,
+    right: 16,
+    borderRadius: 50,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: '3%'
   },
   addButton: {
     backgroundColor: '#7871FF',

@@ -11,6 +11,8 @@ const SignUpScreen = () => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+
     
     const navigation = useNavigation()
 
@@ -19,7 +21,9 @@ const SignUpScreen = () => {
             .createUserWithEmailAndPassword(email, password) // This is a Promise, which is essentially represents the completion / failure of an asynchronus operation
             .then(userCredentials => { // .then() excecutes after the Promise
                 const user = userCredentials.user;
+                user.updatePhoneNumber(null);
                 console.log(user.email);
+                
                 updateProfile(user, {
                     displayName: firstName + ' ' + lastName
                 })
@@ -27,7 +31,7 @@ const SignUpScreen = () => {
                     console.log("User name: " + user.displayName)
                 })
                 .catch(error => alert(error.message))
-                navigation.replace("Home");
+                navigation.replace("Login");
             })
             .catch(error => alert(error.message))
     }
@@ -52,6 +56,13 @@ const SignUpScreen = () => {
                     placeholder = "Please enter your last name"
                     value = {lastName}
                     onChangeText = {text => setLastName(text)}
+                    style = {styles.input}
+                />
+
+                <TextInput
+                    placeholder = "Please enter your phone number"
+                    value = {phoneNumber}
+                    onChangeText = {text => setPhoneNumber(text)}
                     style = {styles.input}
                 />
 

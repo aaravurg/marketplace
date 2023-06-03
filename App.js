@@ -30,9 +30,7 @@ export default function App() {
           component={SignUpScreen} 
           options={{
             title: "Sign Up",
-            headerTitleStyle: {
-              color: 'white'
-            }
+            headerShown: false
             }} />
         <Stack.Screen 
           name="Login" 

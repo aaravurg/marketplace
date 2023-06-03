@@ -14,7 +14,7 @@ const InitialScreen = () => {
 
             {/* Stock image */}
             <Image
-                source={require('/Users/aarav/Documents/marketplace/assets/intro.png')}
+                source={require('/Users/aarav/Documents/marketplace/assets/undraw_Shopping_Bags_rsgo.png')}
                 style={styles.image}
             />
             
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         textAlign: 'center',
         position: 'absolute',
-        top: '25%',
+        top: '20%',
     },
     image: {
         alignItems: 'center',
